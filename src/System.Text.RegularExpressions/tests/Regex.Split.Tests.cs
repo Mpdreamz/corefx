@@ -47,6 +47,9 @@ namespace System.Text.RegularExpressions.Tests
             yield return new object[] { @"\d", "1a2b3c4d5e6f7g8h9i0k", RegexOptions.RightToLeft, 10, 20, new string[] { "1a", "b", "c", "d", "e", "f", "g", "h", "i", "k" } };
             yield return new object[] { @"\d", "1a2b3c4d5e6f7g8h9i0k", RegexOptions.RightToLeft, 2, 20, new string[] { "1a2b3c4d5e6f7g8h9i", "k" } };
             yield return new object[] { @"\d", "1a2b3c4d5e6f7g8h9i0k", RegexOptions.RightToLeft, 1, 20, new string[] { "1a2b3c4d5e6f7g8h9i0k" } };
+
+            // AnyNewLine
+            yield return new object[] { @"$", "aaaa\r\nbbbbb", RegexOptions.Multiline | RegexOptions.AnyNewLine, 7, 0, new string[] { "aaaa", "bbbb" } };
         }
 
         [Theory]

@@ -823,6 +823,16 @@ namespace System.Text.RegularExpressions
                         advance = 0;
                         continue;
 
+                    case RegexCode.AnyNewLine:
+                        var rightChars = Rightchars();
+                        if (rightChars == 1 && CharAt(Textpos()) != '\n')
+                            break;
+                        if (rightChars == 2 && (CharAt(Textpos()) != '\r' || CharAt(Textpos() + 1) != '\n'))
+                            break;
+
+                        advance = rightChars == 1 ? 0 : 1;
+                        continue;
+
                     case RegexCode.Boundary:
                         if (!IsBoundary(Textpos(), runtextbeg, runtextend))
                             break;

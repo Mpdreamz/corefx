@@ -225,6 +225,7 @@ namespace System.Text.RegularExpressions
     public enum RegexOptions
     {
         Compiled = 8,
+        AnyNewLine = 1024,
         CultureInvariant = 512,
         ECMAScript = 256,
         ExplicitCapture = 4,

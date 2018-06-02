@@ -622,6 +622,17 @@ namespace System.Text.RegularExpressions.Tests
                 }
             };
 
+            // Mutliline
+            yield return new object[]
+            {
+                "(line3\n$\n)line4", "line1\nline2\nline3\n\nline4", RegexOptions.Multiline | RegexOptions.AnyNewLine, 0, 24,
+                new CaptureData[]
+                {
+                    new CaptureData("line3\n\nline4", 12, 12),
+                    new CaptureData("line3\n\n", 12, 7)
+                }
+            };
+
             // RightToLeft
             yield return new object[]
             {
@@ -824,6 +835,16 @@ namespace System.Text.RegularExpressions.Tests
             // Start is invalid
             Assert.Throws<ArgumentOutOfRangeException>(() => new Regex("pattern").IsMatch("input", -1));
             Assert.Throws<ArgumentOutOfRangeException>(() => new Regex("pattern").IsMatch("input", 6));
+        }
+
+        [Fact]
+        public void MatchAnyNewLine()
+        {
+            //var plainMatch = Regex.Match("foo\r\nbar", ".*$", RegexOptions.Multiline);
+            //Assert.Equal(4, plainMatch.Length);
+                
+            var anyMatch = Regex.Match("foo\r\nbar", ".*$", RegexOptions.Multiline | RegexOptions.AnyNewLine);
+            Assert.Equal(3, anyMatch.Length);
         }
     }
 }

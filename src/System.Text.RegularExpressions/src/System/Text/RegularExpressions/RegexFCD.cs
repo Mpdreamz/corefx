@@ -32,6 +32,7 @@ namespace System.Text.RegularExpressions
         public const int End = 0x0020;
         public const int Boundary = 0x0040;
         public const int ECMABoundary = 0x0080;
+        public const int AnyNewLine = 0x00100;
 
         private readonly List<RegexFC> _fcStack;
         private ValueListBuilder<int> _intStack;    // must not be readonly
@@ -125,6 +126,7 @@ namespace System.Text.RegularExpressions
 
                     case RegexNode.Bol:
                     case RegexNode.Eol:
+                    case RegexNode.AnyNewLine:
                     case RegexNode.Boundary:
                     case RegexNode.ECMABoundary:
                     case RegexNode.Beginning:
@@ -180,6 +182,7 @@ namespace System.Text.RegularExpressions
 
                     case RegexNode.Bol:
                     case RegexNode.Eol:
+                    case RegexNode.AnyNewLine:
                     case RegexNode.Boundary:
                     case RegexNode.ECMABoundary:
                     case RegexNode.Beginning:
@@ -213,6 +216,7 @@ namespace System.Text.RegularExpressions
             {
                 case RegexNode.Bol: return Bol;
                 case RegexNode.Eol: return Eol;
+                case RegexNode.AnyNewLine: return AnyNewLine;
                 case RegexNode.Boundary: return Boundary;
                 case RegexNode.ECMABoundary: return ECMABoundary;
                 case RegexNode.Beginning: return Beginning;
@@ -512,6 +516,7 @@ namespace System.Text.RegularExpressions
                 case RegexNode.Start:
                 case RegexNode.EndZ:
                 case RegexNode.End:
+                case RegexNode.AnyNewLine:
                     PushFC(new RegexFC(true));
                     break;
 

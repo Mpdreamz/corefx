@@ -205,6 +205,9 @@ namespace System.Text.RegularExpressions
         {
             if (Re == null)
                 Re = string.Empty;
+
+
+
             _pattern = Re;
             _currentPos = 0;
         }
@@ -335,7 +338,12 @@ namespace System.Text.RegularExpressions
                         break;
 
                     case '$':
-                        AddUnitType(UseOptionM() ? RegexNode.Eol : RegexNode.EndZ);
+                        if (UseOptionAnyNewLine())
+                        {
+                            AddUnitType(RegexNode.AnyNewLine);
+                        }
+                        else
+                            AddUnitType(UseOptionM() ? RegexNode.Eol : RegexNode.EndZ);
                         break;
 
                     case '.':
@@ -1945,6 +1953,15 @@ namespace System.Text.RegularExpressions
         {
             return (_options & RegexOptions.Multiline) != 0;
         }
+
+        /*
+         * True if AnyNewLine was set.
+         */
+        private bool UseOptionAnyNewLine()
+        {
+            return (_options & RegexOptions.AnyNewLine) != 0;
+        }
+
 
         /*
          * True if S option altering meaning of . is on.

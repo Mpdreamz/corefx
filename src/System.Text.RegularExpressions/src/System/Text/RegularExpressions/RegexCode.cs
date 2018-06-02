@@ -88,6 +88,7 @@ namespace System.Text.RegularExpressions
         public const int Back = 128;  // bit to indicate that we're backtracking.
         public const int Back2 = 256; // bit to indicate that we're backtracking on a second branch.
         public const int Ci = 512;    // bit to indicate that we're case-insensitive.
+        public const int AnyNewLine = 1024;              // accept \n OR \r\n as newline $
 
         public readonly int[] Codes;                     // the code
         public readonly string[] Strings;                // the string/set table

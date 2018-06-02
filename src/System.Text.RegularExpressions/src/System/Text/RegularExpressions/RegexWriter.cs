@@ -488,6 +488,7 @@ namespace System.Text.RegularExpressions
                 case RegexNode.Start:
                 case RegexNode.EndZ:
                 case RegexNode.End:
+                case RegexNode.AnyNewLine:
                     Emit(node.NType);
                     break;
 

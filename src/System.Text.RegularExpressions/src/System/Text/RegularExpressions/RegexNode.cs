@@ -76,6 +76,7 @@ namespace System.Text.RegularExpressions
         public const int Start = RegexCode.Start;                     //          \G
         public const int EndZ = RegexCode.EndZ;                       //          \Z
         public const int End = RegexCode.End;                         //          \z
+        public const int AnyNewLine = RegexCode.AnyNewLine;           // accept \n OR \r\n as newline $
 
         // Interior nodes do not correspond to primitive operations, but
         // control structures compositing other operations
